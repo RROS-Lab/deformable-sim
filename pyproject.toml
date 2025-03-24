@@ -1,0 +1,27 @@
+[project]
+name = "deformable-sim"
+version = "0.1.0"
+description = "A simulation framework for deformable packages"
+authors = [
+    {name = "Hantao Ye", email = "hantaoye@usc.edu"},
+    {name = "Omey Mohan Manyar", email = "manyar@usc.edu"},
+]
+dependencies = [
+    "warp-lang==1.6.0", 
+    "bayesian-optimization>=2.0.3", 
+    "scikit-learn>=1.6.1", 
+    "torch>=2.6.0", 
+    "usd-core>=25.2.post1", 
+    "matplotlib>=3.10.1", 
+    "pandas>=2.2.3", 
+    "moviepy>=2.1.2", 
+    "numpy>=2.2.4", 
+    "trimesh>=4.6.5",
+]
+requires-python = "==3.12.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
