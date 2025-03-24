@@ -1,0 +1,63 @@
+skip_rows: 6
+verbose: true
+dataset_dir: "dataset/master_dataset"
+metadata_file: "dataset/metadata.csv"
+PackagesToProcess: ["H"]
+ObjectSizeToProcess: ["H"]
+ObjectMassToProcess: ["L", "M", "H"]
+IncludeFailures: false
+
+ParsingOrder:
+  package_size: 0
+  object_size: 1
+  object_mass: 2
+  velocity: 3
+  orientation: 4
+
+#Size of the package
+PackageSizes:
+  L: [0.2032, 0.254]
+  M: [0.2286, 0.3048]
+  H: [0.254, 0.3048]
+
+##Diameter of the round objects
+ObjectSizes:
+  L: 0.11
+  M: 0.13
+  H: 0.16
+
+#Kgs
+PackageMasses:
+  L: 0.014
+  M: 0.014
+  H: 0.022
+
+# pounds
+Weights:
+  L: 0.5
+  M: 0.75
+  H: 1.0
+
+#Kgs (3D Printed Object)
+ObjectMasses:
+  L: 0.058
+  M: 0.086
+  H: 0.116
+
+#Number of Markers on the Package
+PackageNumMarkers:
+  L: 30
+  M: 30
+  H: 42
+
+#Number of Markers on the Object
+ObjectNumMarkers:
+  L: 4
+  M: 5
+  H: 5
+
+
+##Suction tool to suction cup transform
+world_T_tool: [0.28859,0.37293,-0.1803425,0.014902,-0.002222,-0.014009,0.99978]
+world_T_cup: [0.306779816,0.233716019,-0.192620438,-0.0222751,0.96046,-0.003604,0.277464]
+
