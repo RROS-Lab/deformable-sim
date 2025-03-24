@@ -11,7 +11,7 @@ dependencies = [
     "bayesian-optimization>=2.0.3", 
     "scikit-learn>=1.6.1", 
     "torch>=2.6.0", 
-    "usd-core>=25.2.post1", 
+    "usd-core==24.11", 
     "matplotlib>=3.10.1", 
     "pandas>=2.2.3", 
     "moviepy>=2.1.2", 

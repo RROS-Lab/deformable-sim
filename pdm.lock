@@ -5,7 +5,7 @@
 groups = ["default"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:9eaf056437ecfb639e7fc02fe59084030330b7fd06aed14758527893af96b46b"
+content_hash = "sha256:1e72c38c2f3989a815c6cc675105f0983790b9b60d32707d8bcb78b6068ae3c8"
 
 [[metadata.targets]]
 requires_python = "==3.12.*"
@@ -799,14 +799,14 @@ files = [
 
 [[package]]
 name = "usd-core"
-version = "25.2.post1"
+version = "24.11"
 requires_python = "<3.13,>=3.6"
 summary = "Pixar's Universal Scene Description"
 groups = ["default"]
 files = [
-    {file = "usd_core-25.2.post1-cp312-none-macosx_10_9_universal2.whl", hash = "sha256:1db74308772645bc5d46e77fe62280e9507210903aaaa7729102c2d1bced7ce8"},
-    {file = "usd_core-25.2.post1-cp312-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:57e223cd8df22fb1960555fff4fb623fbc7f488367a82241db1f82459b8ece84"},
-    {file = "usd_core-25.2.post1-cp312-none-win_amd64.whl", hash = "sha256:d16b735bb758951c173d8622cada3d839d2ebe5400f8ae062548921d7a1cd597"},
+    {file = "usd_core-24.11-cp312-none-macosx_10_9_universal2.whl", hash = "sha256:3b5d2763fe8591d72b8d559f87c7613935b8367a598f0f040cdf4975cdc2e87f"},
+    {file = "usd_core-24.11-cp312-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:77fcfe55b9369a38e186aa8ae697d315b5c12938a10f3877fba29aff36c88dc6"},
+    {file = "usd_core-24.11-cp312-none-win_amd64.whl", hash = "sha256:66dc6bd5222c5554ad4873ba9b8bf051b8614c7cf1220559c83c2cef204b93ab"},
 ]
 
 [[package]]
