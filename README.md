@@ -17,6 +17,10 @@ This repository is the official implementation of the paper. This code is intend
     - [Step 2: Clone the Repository](#step-2-clone-the-repository)
     - [Step 3: Create a Virtual Environment](#step-3-create-a-virtual-environment)
     - [Step 4: Activate the Virtual Environment](#step-4-activate-the-virtual-environment)
+    - [Step 5: Visulization Software](#step-5-visulization-software)
+  - [Simulation Pipeline](#simulation-pipeline)
+    - [Evaluation](#evaluation)
+  - [Parallel Pipeline](#parallel-pipeline)
 
 ## Environment Setup
 
@@ -41,8 +45,8 @@ curl -sSL https://pdm-project.org/install-pdm.py | python3 -
 Clone the project repository and navigate into the project folder:
 
 ```shell
-git clone https://github.com/RROS-Lab/IROS2024-Bin-Packing.git
-cd IROS2024-Bin-Packing
+git clone https://github.com/RROS-Lab/deformable-sim.git
+cd deformable-sim
 ```
 
 ### Step 3: Create a Virtual Environment
@@ -75,6 +79,19 @@ pdm venv create --with conda --name my-env-name 3.12
 
 ### Step 4: Activate the Virtual Environment
 
+Firstly, select the created virtual envrionment `0` using `pdm use`
+
+```shell
+$ pdm use
+
+Please enter the Python interpreter to use
+ 0. cpython@3.12 (/path/to/deformable-sim/.venv/bin/python)
+ 1. cpython@3.12 (/path/to/deformable-sim/.venv/bin/python3.12)
+ 2. cpython@3.12 (/home/user/miniconda3/bin/python3.12)
+ 3. cpython@3.12 (/usr/bin/python3.12)
+ 4. cpython@3.12 (/usr/bin/python)
+```
+
 To activate the virtual environment and install dependencies, run:
 
 ```shell
@@ -84,3 +101,77 @@ pdm install
 
 All necessary dependencies will be installed after running the command above.
 
+### Step 5: Visulization Software
+
+We used [Omniverse Kit](https://docs.omniverse.nvidia.com/kit/docs/kit-manual/latest/guide/kit_overview.html) for visualizing `.usd` files, use the [link](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/omniverse/collections/kit) to download the software.
+
+After extracted compressed file, run the following inside the compressed folder to start the visualizer:
+
+```shell
+./omni.app.editor.base.sh
+```
+
+## Simulation Pipeline
+
+The main environment we are using is [package_parameter_optim](./src/envs/package_parameter_optim.py):
+
+```shell
+$ python -m src.envs.package_parameter_optim --help
+usage: package_parameter_optim.py [-h] [--data_dir DATA_DIR] [--output_dir OUTPUT_DIR] [--iterations ITERATIONS] [--train_test_ratio TRAIN_TEST_RATIO] [--init_points INIT_POINTS]
+                                  [--eval EVAL] [--benchmark BENCHMARK]
+
+options:
+  -h, --help            show this help message and exit
+  --data_dir DATA_DIR   Directory containing the data files. (default: data)
+  --output_dir OUTPUT_DIR
+                        Directory to save the output files. (default: result)
+  --iterations ITERATIONS
+                        Number of iterations for sampling. (default: 1000)
+  --train_test_ratio TRAIN_TEST_RATIO
+                        Ratio of training data to test data. (default: 0.8)
+  --init_points INIT_POINTS
+                        Number of initial registration points for Bayesian optimization. (default: 5)
+  --eval EVAL           Evaluation mode. (default: False)
+  --benchmark BENCHMARK
+                        Benchmark mode. (default: False)
+```
+
+For running parameter identification based on the [experiment data](./data/), run:
+
+```shell
+python -m src.envs.package_parameter_optim --iteration 200 # e.g. 200 iterations
+```
+
+After it has been finished, `./result/package_parameter_sampling/best_params.csv` storing the best parameters will be generated.
+
+### Evaluation
+
+For detailed evaluation, `.usd` files for each iteration will be stored in `./result/package_parameter_sampling/sampling/*` and optimizaiton history will be reported in `./result/package_parameter_sampling/package_parameter.csv`.
+
+We also finished several scripts for ease of evaluation, run the following:
+
+```shell
+python ./scripts/best_parameter.py
+```
+
+to generate `best.csv`, which will be used for evaluation and benchmark in the environment.
+
+**Evaluation** mode will run under optimized and perturbed parameters through all *test* and *train* trajectories.  **Benchmark** mode will test optimized parameters under *test* trajectories with various number of particles to report loss and FPS difference.
+
+```shell
+python -m src.envs.package_parameter_optim --eval True
+python -m src.envs.package_parameter_optim --benchmark True
+```
+
+After they have finished, use another script to print statistical report in the terminal:
+
+```shell
+python ./scripts/report.py --mode evaluation
+python ./scripts/report.py --mode benchmark
+```
+
+`train_{idx}/test_{idx}` in evaluation will print losses through *train/test* trajectories under `10*{idx}%` perturbation from optimized parameters. `test_{idx}` in benchmark will print losses through *test* trajectories by adding `{idx}` particles in between sampled points for package simulation.
+
+## Parallel Pipeline
+
+TBA
