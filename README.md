@@ -6,7 +6,7 @@
 
 <sup>*</sup>Equal contribution, Listed Alphabetically
 
-**[Project Page](https://sites.google.com/usc.edu/deformable-sim/) | Video | Paper**
+**[Project Page](https://sites.google.com/usc.edu/deformable-sim/) | [Video](https://youtu.be/7sGZ8UyUNd0) | [Paper](https://sites.google.com/usc.edu/deformable-sim/paper)**
 
 This repository is the official implementation of the paper. This code is intended for reproduction purposes only. Current implementation does not support extensions. The objective of this repository is to provide the reader with the implementation details of the simulation proposed in the paper.
 
