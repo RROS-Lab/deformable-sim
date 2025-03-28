@@ -101,7 +101,7 @@ pdm install
 
 All necessary dependencies will be installed after running the command above.
 
-### Step 5: Visulization Software
+### Step 5: Visualization Software
 
 We used [Omniverse Kit](https://docs.omniverse.nvidia.com/kit/docs/kit-manual/latest/guide/kit_overview.html) for visualizing `.usd` files, use the [link](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/omniverse/collections/kit) to download the software.
 
